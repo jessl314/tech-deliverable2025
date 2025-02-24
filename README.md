@@ -13,7 +13,7 @@ Clone this repository to your local machine by running the command below:
 
 ```bash
 git clone https://github.com/HackAtUCI/tech-deliverable.git
-```
+```git
 
 If you are unfamiliar with `git`, we recommend that you become familiar
 with it as soon as possible!
