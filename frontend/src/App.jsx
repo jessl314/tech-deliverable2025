@@ -1,8 +1,12 @@
 import "./App.css";
-import React from 'react';
+import React, {useState} from 'react';
 import QuoteFilter from "./components/QuoteFilter";
 
 function App() {
+	const [filter, setFilter] = useState("");
+	const handleFilterChange = (newFilter) => {
+		setFilter(newFilter);
+	};
 
 	return (
 		<div className="App">
@@ -18,7 +22,7 @@ function App() {
 				<input type="text" name="message" id="input-message" required />
 				<button type="submit">Submit</button>
 			</form>
-			<QuoteFilter/>
+			<QuoteFilter onFilterChange={handleFilterChange}/>
 			{/* TODO: Display the actual quotes from the database */}
 			<h2>Previous Quotes</h2>
 			<div className="messages">
