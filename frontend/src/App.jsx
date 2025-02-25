@@ -1,12 +1,22 @@
 import "./App.css";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import QuoteFilter from "./components/QuoteFilter";
+import { FetchQuotes } from "./components/FetchQuotes";
 
 function App() {
 	const [filter, setFilter] = useState("");
 	const handleFilterChange = (newFilter) => {
 		setFilter(newFilter);
 	};
+
+	const[quotes, setQuotes] = useState([]);
+	useEffect(() => {
+		const getQuotes = async () => {
+			const fetchedQuotes = FetchQuotes(filter);
+			setQuotes(fetchedQuotes);
+		};
+		getQuotes();
+	}, [filter]);
 
 	return (
 		<div className="App">
@@ -22,13 +32,24 @@ function App() {
 				<input type="text" name="message" id="input-message" required />
 				<button type="submit">Submit</button>
 			</form>
-			<QuoteFilter onFilterChange={handleFilterChange}/>
+			<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
 			{/* TODO: Display the actual quotes from the database */}
 			<h2>Previous Quotes</h2>
 			<div className="messages">
 				<p>Peter Anteater</p>
 				<p>Zot Zot Zot!</p>
 				<p>Every day</p>
+				{quotes.length > 0 ? (
+					<ul>
+						{quotes.map((quote, index) => (
+							<li key={index}>
+								<strong>{quote.name}</strong>: {quote.message} <em>({quote.time})</em>
+							</li>
+						))}
+					</ul>
+				) : (
+					<p>No quotes available</p>
+				)}
 			</div>
 		</div>
 	);

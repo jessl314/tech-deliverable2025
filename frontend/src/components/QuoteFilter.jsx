@@ -20,6 +20,7 @@ const QuoteFilter = ({onFilterChange}) => {
         <option value="week">the last week</option>
         <option value="month">the last month</option>
         <option value="year">the last year</option>
+        <option value="all">all time</option>
         </select>
         </div>
     );

@@ -57,7 +57,9 @@ def get_cutoff_age(max_age: str) -> datetime:
     
     """
     now = datetime.now()
-    if max_age == "week":
+    if max_age == "all":
+        return None
+    elif max_age == "week":
         return now - timedelta(weeks=1)
     elif max_age == "month":
         return now - relativedelta(months=1)
@@ -69,7 +71,6 @@ def get_cutoff_age(max_age: str) -> datetime:
 @app.get("/retrieve", response_model=list[Quote])
 async def get_quotes(
     max_age: str = Query(None, description="max age of quotes")):
-
     """
     API route to obtain quotes from the database.
     - on the frontend, need a select menu for options to view quotes from 
@@ -77,10 +78,13 @@ async def get_quotes(
     
     """
     quotes_data: list[Quote] = database.get("quotes", [])
+    print(quotes_data)
 
     if max_age is not None:
         # cutoff age means the time that is exactly max_age days away from now
         cutoff_age = get_cutoff_age(max_age)
+        if cutoff_age is None:
+            return {"quotes": quotes_data}
         filter_quotes = []
         # loop through the Quote objects
         # and try to convert the time
@@ -98,5 +102,4 @@ async def get_quotes(
                 filter_quotes.append(quote)
         return {"quotes":filter_quotes}
     # just return all quotes as a default
-    return quotes_data
-
+    return {"quotes":quotes_data}
