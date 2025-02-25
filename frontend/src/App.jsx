@@ -1,6 +1,9 @@
 import "./App.css";
+import React from 'react';
+import QuoteFilter from "./QuoteFilter";
 
 function App() {
+
 	return (
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
@@ -15,8 +18,7 @@ function App() {
 				<input type="text" name="message" id="input-message" required />
 				<button type="submit">Submit</button>
 			</form>
-
-			<h2>Previous Quotes</h2>
+			<QuoteFilter/>
 			{/* TODO: Display the actual quotes from the database */}
 			<div className="messages">
 				<p>Peter Anteater</p>
