@@ -1,6 +1,6 @@
 import "./App.css";
 import React from 'react';
-import QuoteFilter from "./QuoteFilter";
+import QuoteFilter from "./components/QuoteFilter";
 
 function App() {
 
@@ -20,6 +20,7 @@ function App() {
 			</form>
 			<QuoteFilter/>
 			{/* TODO: Display the actual quotes from the database */}
+			<h2>Previous Quotes</h2>
 			<div className="messages">
 				<p>Peter Anteater</p>
 				<p>Zot Zot Zot!</p>
