@@ -1,8 +1,8 @@
 from contextlib import asynccontextmanager
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import AsyncIterator
 
-from fastapi import FastAPI, Form, status
+from fastapi import FastAPI, Form, status, Query
 from fastapi.responses import RedirectResponse
 from typing_extensions import TypedDict
 
@@ -50,14 +50,32 @@ def post_message(name: str = Form(), message: str = Form()) -> RedirectResponse:
 # TODO: add another API route with a query parameter to retrieve quotes based on max age
 
 @app.get("/retrieve", response_model=list[Quote])
-def get_quotes():
+async def get_quotes(
+    max_age: int = Query(None, description="max age of quotes")):
+
     """
     API route to obtain quotes from the database.
-    - need to add query parameter to indicate the max age of quotes to return
-    - on the frontend, need a select menu for options to view quotes from last week, month year, or all
+    - on the frontend, need a select menu for options to view quotes from 
+    last week, month year, or all
     
     """
-    # currently: gets quotes in the database under the quote key
-    #  and then returns a list of them or an empty list if there is none
-    quotes_data = database.get("quotes", [])
+    
+    quotes_data: list[Quote] = database.get("quotes", [])
+
+    if max_age is not None:
+        # cutoff age means the time that is exactly max_age days away from now
+        cutoff_age = datetime.now() - timedelta(days = max_age)
+        filter_quotes = []
+        # loop through the Quote objects and try to convert the time from iso string to a datetime object in order to compare ages
+        for quote in quotes_data["quotes"]:
+            try:
+                quote_time = datetime.fromisoformat(quote['time'])
+            except ValueError:
+                continue
+            # if the age of the quote is less than the cutoff_age (the date comes after the cutoff date) we append
+            if quote_time >= cutoff_age:
+                filter_quotes.append(quote)
+        return filter_quotes
+    # just return all quotes as a default
     return quotes_data
+
