@@ -8,7 +8,7 @@ import FormSubmission from "./components/FormSubmission";
 function App() {
 
 	// filter refers to the option the use selects for viewing previous quotes: Choose, week, year, month, all
-	const [filter, setFilter] = useState("all");
+	const [filter, setFilter] = useState("");
 	const handleFilterChange = (newFilter) => {
 		setFilter(newFilter);
 	};

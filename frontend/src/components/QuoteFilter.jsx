@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const QuoteFilter = ({onFilterChange}) => {
-    const [selectedOption, setSelectedOption] = useState('week')
+    const [selectedOption, setSelectedOption] = useState('')
 
     const handleSelectChange = (event) => {
         const newVal = event.target.value;
