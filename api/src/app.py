@@ -4,7 +4,7 @@ from dateutil.relativedelta import relativedelta
 from typing import AsyncIterator
 
 from fastapi import FastAPI, Form, status, Query
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, JSONResponse
 from typing_extensions import TypedDict
 
 from services.database import JSONDatabase
@@ -39,7 +39,7 @@ app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # Allow frontend's origin
+    allow_origins=["*"],  # Allow frontend's origin
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods
     allow_headers=["*"],  # Allow all headers
@@ -48,7 +48,7 @@ app.add_middleware(
 
 # endpoint to process a quote submission
 @app.post("/quote")
-def post_message(name: str = Form(), message: str = Form()) -> RedirectResponse:
+def post_message(name: str = Form(), message: str = Form()) -> JSONResponse:
     """
     Process a user submitting a new quote.
     You should not modify this function except for the return value.
@@ -58,14 +58,13 @@ def post_message(name: str = Form(), message: str = Form()) -> RedirectResponse:
     database["quotes"].append(quote)
 
     # You may modify the return value as needed to support other functionality
-    return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
+    return JSONResponse(content={"message": "quote submission successful", "quote": quote})
 
 # START EDITING HERE!!---------------------------
 
 def get_cutoff_age(max_age: str) -> datetime:
     """
     calculates the cutoff age that a quote can be in order to be displayed.
-
     takes month length variation and leap years into consideration.
     
     """
@@ -86,9 +85,7 @@ async def get_quotes(
     max_age: str = Query(None, description="max age of quotes")):
     """
     API route to obtain quotes from the database.
-    - on the frontend, need a select menu for options to view quotes from 
-    last week, month year, or all
-    
+
     """
     quotes_data: list[Quote] = database.get("quotes", [])
     # print(quotes_data)
@@ -99,18 +96,13 @@ async def get_quotes(
         if cutoff_age is None:
             return quotes_data
         filter_quotes = []
-        # loop through the Quote objects
-        # and try to convert the time
-        # from iso string to a datetime object
-        # in order to compare ages
+        # converts each quotes time from isoformat to datetime format in order to compare times accurately
         for quote in quotes_data:
             try:
                 quote_time = datetime.fromisoformat(quote['time'])
             except ValueError:
                 continue
-            # if the age of the quote is less
-            # than the cutoff_age
-            # (the date comes after the cutoff date) we append
+            # if the quote_time date comes after cutoff_date, append
             if quote_time >= cutoff_age:
                 filter_quotes.append(quote)
         # print(filter_quotes)

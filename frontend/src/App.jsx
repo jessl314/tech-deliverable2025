@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import QuoteFilter from "./components/QuoteFilter";
 import FetchQuotes from "./components/FetchQuotes";
 import FormatDateTime from "./components/FormatDateTime";
+import FormSubmission from "./components/FormSubmission";
 
 function App() {
 
@@ -14,12 +15,13 @@ function App() {
 
 	const[quotes, setQuotes] = useState([]);
     
-	// this use affect sets the correct set of quotes based on the filter keyword
+	// this use effect sets the correct set of quotes based on the filter keyword
 	useEffect(() => {
 		if (filter !== "") {
 		const fetchData = async () => {
 			const fetchedQuotes = await FetchQuotes(filter);
 			setQuotes(fetchedQuotes)
+			console.log(fetchedQuotes)
 	};
 	fetchData();
 }
@@ -29,17 +31,7 @@ function App() {
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
 			<h1>Hack at UCI Tech Deliverable</h1>
-
-			<h2>Submit a quote</h2>
-			{/* TODO: implement custom form submission logic to not refresh the page */}
-			<form action="/api/quote" method="post">
-				<label htmlFor="input-name">Name</label>
-				<input type="text" name="name" id="input-name" required />
-				<label htmlFor="input-message">Quote</label>
-				<input type="text" name="message" id="input-message" required />
-				<button type="submit">Submit</button>
-			</form>
-
+			<FormSubmission refreshQuotes={() => setFilter(filter)}/>
 			<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
 	
 			<h2>Previous Quotes</h2>
