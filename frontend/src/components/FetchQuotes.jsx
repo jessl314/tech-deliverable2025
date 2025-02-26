@@ -1,16 +1,19 @@
 import React, {useState} from 'react';
 
 export const FetchQuotes = async (max_age) => {
-    let url = "/retrieve";
+    let url = "http://127.0.0.1:8000/retrieve";
     if (max_age) {
-        url += '?max_age=${max_age}'
+        url += `?max_age=${max_age}`
     }
     try {
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error("Network response not ok")
         }
-        const data = await response.json();
+         // Log the raw response text
+
+        const data = await response.json()
+        console.log(data)
         return data.quotes || data;
     } catch(error) {
         console.error("Error fetching quotes:", error);

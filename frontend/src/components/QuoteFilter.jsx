@@ -11,7 +11,7 @@ const QuoteFilter = ({onFilterChange}) => {
 
     return (
         <div>
-        <label htmlFor="view-quote-menu" style={{ fontSize: "1.5rem", "fontWeight": "bold", "margin-top": "1.5rem"}}>View Quotes From: </label>
+        <label htmlFor="view-quote-menu" style={{ fontSize: "1.5rem", "fontWeight": "bold", "marginTop": "1.5rem"}}>View Quotes From: </label>
         <select
         id="view-quote-menu"
         value={selectedOption}

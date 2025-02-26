@@ -9,6 +9,10 @@ from typing_extensions import TypedDict
 
 from services.database import JSONDatabase
 
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
 
 class Quote(TypedDict):
     name: str
@@ -32,6 +36,15 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 
 app = FastAPI(lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Allow frontend's origin
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
+
 
 # endpoint to process a quote submission
 @app.post("/quote")
@@ -78,7 +91,7 @@ async def get_quotes(
     
     """
     quotes_data: list[Quote] = database.get("quotes", [])
-    print(quotes_data)
+    # print(quotes_data)
 
     if max_age is not None:
         # cutoff age means the time that is exactly max_age days away from now
@@ -93,13 +106,16 @@ async def get_quotes(
         for quote in quotes_data:
             try:
                 quote_time = datetime.fromisoformat(quote['time'])
+                print(quote_time)
             except ValueError:
                 continue
             # if the age of the quote is less
             # than the cutoff_age
             # (the date comes after the cutoff date) we append
+            print(cutoff_age)
             if quote_time >= cutoff_age:
                 filter_quotes.append(quote)
-        return {"quotes":filter_quotes}
+        print(filter_quotes)
+        return filter_quotes
     # just return all quotes as a default
-    return {"quotes":quotes_data}
+    return quotes_data

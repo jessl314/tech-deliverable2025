@@ -10,6 +10,7 @@ function App() {
 	};
 
 	const[quotes, setQuotes] = useState([]);
+
 	useEffect(() => {
 		const getQuotes = async () => {
 			const fetchedQuotes = FetchQuotes(filter);
@@ -32,7 +33,7 @@ function App() {
 				<input type="text" name="message" id="input-message" required />
 				<button type="submit">Submit</button>
 			</form>
-			<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
+			<QuoteFilter selectedOption={filter}onFilterChange={setFilter}/>
 			{/* TODO: Display the actual quotes from the database */}
 			<h2>Previous Quotes</h2>
 			<div className="messages">
