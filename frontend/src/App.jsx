@@ -4,6 +4,7 @@ import QuoteFilter from "./components/QuoteFilter";
 import FetchQuotes from "./components/FetchQuotes";
 import FormatDateTime from "./components/FormatDateTime";
 import FormSubmission from "./components/FormSubmission";
+import logo from "./assets/quotebook.png";
 
 function App() {
 
@@ -39,7 +40,7 @@ function App() {
 
 	return (
 		<div className="App">
-			{/* TODO: include an icon for the quote book */}
+			<img src={logo} alt="quotebook logo"></img>
 			<h1>Hack at UCI Tech Deliverable</h1>
 			<FormSubmission refreshQuotes={handleQuoteSubmit}/>
 			<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
