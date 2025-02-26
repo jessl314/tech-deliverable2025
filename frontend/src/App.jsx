@@ -5,19 +5,24 @@ import FetchQuotes from "./components/FetchQuotes";
 import FormatDateTime from "./components/FormatDateTime";
 
 function App() {
-	const [filter, setFilter] = useState("");
+
+	// filter refers to the option the use selects for viewing previous quotes: Choose, week, year, month, all
+	const [filter, setFilter] = useState("all");
 	const handleFilterChange = (newFilter) => {
 		setFilter(newFilter);
 	};
 
 	const[quotes, setQuotes] = useState([]);
-
+    
+	// this use affect sets the correct set of quotes based on the filter keyword
 	useEffect(() => {
+		if (filter !== "") {
 		const fetchData = async () => {
 			const fetchedQuotes = await FetchQuotes(filter);
 			setQuotes(fetchedQuotes)
 	};
 	fetchData();
+}
     }, [filter]);
 
 	return (
@@ -34,13 +39,11 @@ function App() {
 				<input type="text" name="message" id="input-message" required />
 				<button type="submit">Submit</button>
 			</form>
-			<QuoteFilter selectedOption={filter}onFilterChange={setFilter}/>
-			{/* TODO: Display the actual quotes from the database */}
+
+			<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
+	
 			<h2>Previous Quotes</h2>
 			<div className="messages">
-				<p>Peter Anteater</p>
-				<p>Zot Zot Zot!</p>
-				<p>Every day</p>
 				{quotes.length > 0 ? (
                     <ul>
                         {quotes.map((quote, index) => (
@@ -59,5 +62,3 @@ function App() {
 }
 
 export default App;
-
-// "{quote.message}" - {quote.name}, {FormateDateTime(quote.time)}

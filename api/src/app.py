@@ -97,7 +97,7 @@ async def get_quotes(
         # cutoff age means the time that is exactly max_age days away from now
         cutoff_age = get_cutoff_age(max_age)
         if cutoff_age is None:
-            return {"quotes": quotes_data}
+            return quotes_data
         filter_quotes = []
         # loop through the Quote objects
         # and try to convert the time
@@ -106,16 +106,14 @@ async def get_quotes(
         for quote in quotes_data:
             try:
                 quote_time = datetime.fromisoformat(quote['time'])
-                print(quote_time)
             except ValueError:
                 continue
             # if the age of the quote is less
             # than the cutoff_age
             # (the date comes after the cutoff date) we append
-            print(cutoff_age)
             if quote_time >= cutoff_age:
                 filter_quotes.append(quote)
-        print(filter_quotes)
+        # print(filter_quotes)
         return filter_quotes
     # just return all quotes as a default
     return quotes_data
