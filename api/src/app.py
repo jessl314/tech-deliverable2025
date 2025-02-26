@@ -57,7 +57,6 @@ def post_message(name: str = Form(), message: str = Form()) -> JSONResponse:
     quote = Quote(name=name, message=message, time=now.isoformat(timespec="seconds"))
     database["quotes"].append(quote)
 
-    # You may modify the return value as needed to support other functionality
     return JSONResponse(content={"message": "quote submission successful", "quote": quote})
 
 # START EDITING HERE!!---------------------------

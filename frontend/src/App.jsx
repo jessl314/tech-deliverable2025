@@ -15,23 +15,33 @@ function App() {
 
 	const[quotes, setQuotes] = useState([]);
     
-	// this use effect sets the correct set of quotes based on the filter keyword
-	useEffect(() => {
-		if (filter !== "") {
-		const fetchData = async () => {
+	// this arrow function sets the correct set of quotes based on the filter keyword
+	const fetchData = async () => {
 			const fetchedQuotes = await FetchQuotes(filter);
 			setQuotes(fetchedQuotes)
-			console.log(fetchedQuotes)
-	};
-	fetchData();
-}
+	}
+	// this useEffect executes fetchData 
+	// when the menu selection is not Choose, we fetch the corresponding quotes
+	// else set quotes to empty list -> displays "No quotes available"
+	useEffect(() => {
+		if (filter !== "") {
+			fetchData();
+		} else {
+			setQuotes([]);
+		}
+	
     }, [filter]);
+
+	// arrow function that explicitly fetches data. used to force a refetch of data after quote submission
+	const handleQuoteSubmit = () => {
+		fetchData();
+	}
 
 	return (
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
 			<h1>Hack at UCI Tech Deliverable</h1>
-			<FormSubmission refreshQuotes={() => setFilter(filter)}/>
+			<FormSubmission refreshQuotes={handleQuoteSubmit}/>
 			<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
 	
 			<h2>Previous Quotes</h2>
