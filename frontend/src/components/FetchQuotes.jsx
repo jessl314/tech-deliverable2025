@@ -13,10 +13,11 @@ export const FetchQuotes = async (max_age) => {
          // Log the raw response text
 
         const data = await response.json()
-        console.log(data)
         return data.quotes || data;
     } catch(error) {
         console.error("Error fetching quotes:", error);
         return [];
     }
 };
+
+export default FetchQuotes;

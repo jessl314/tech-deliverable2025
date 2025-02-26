@@ -1,7 +1,8 @@
 import "./App.css";
 import React, {useEffect, useState} from 'react';
 import QuoteFilter from "./components/QuoteFilter";
-import { FetchQuotes } from "./components/FetchQuotes";
+import FetchQuotes from "./components/FetchQuotes";
+import FormatDateTime from "./components/FormatDateTime";
 
 function App() {
 	const [filter, setFilter] = useState("");
@@ -12,12 +13,12 @@ function App() {
 	const[quotes, setQuotes] = useState([]);
 
 	useEffect(() => {
-		const getQuotes = async () => {
-			const fetchedQuotes = FetchQuotes(filter);
-			setQuotes(fetchedQuotes);
-		};
-		getQuotes();
-	}, [filter]);
+		const fetchData = async () => {
+			const fetchedQuotes = await FetchQuotes(filter);
+			setQuotes(fetchedQuotes)
+	};
+	fetchData();
+    }, [filter]);
 
 	return (
 		<div className="App">
@@ -41,19 +42,22 @@ function App() {
 				<p>Zot Zot Zot!</p>
 				<p>Every day</p>
 				{quotes.length > 0 ? (
-					<ul>
-						{quotes.map((quote, index) => (
-							<li key={index}>
-								<strong>{quote.name}</strong>: {quote.message} <em>({quote.time})</em>
-							</li>
-						))}
-					</ul>
-				) : (
-					<p>No quotes available</p>
-				)}
+                    <ul>
+                        {quotes.map((quote, index) => (
+                            <li key={index}>
+                                "{quote.message}" - {quote.name}, {FormatDateTime(quote.time)}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No quotes available</p>
+                )}
+				
 			</div>
 		</div>
 	);
 }
 
 export default App;
+
+// "{quote.message}" - {quote.name}, {FormateDateTime(quote.time)}
