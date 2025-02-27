@@ -6,6 +6,8 @@ import FormatDateTime from "./components/FormatDateTime";
 import FormSubmission from "./components/FormSubmission";
 import logo from "./assets/quotebook.png";
 import { Button } from "@radix-ui/themes";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
 
@@ -40,7 +42,8 @@ function App() {
 	}
 
 	return (
-		<div className="App">
+		<body className="bg-primary">
+		<div className="App text-white p-3">
 			<img src={logo} alt="quotebook logo"></img>
 			<h1>Hack at UCI Tech Deliverable</h1>
 			<FormSubmission refreshQuotes={handleQuoteSubmit}/>
@@ -63,6 +66,7 @@ function App() {
 				
 			</div>
 		</div>
+		</body>
 	);
 }
 

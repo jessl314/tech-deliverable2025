@@ -1,0 +1,11 @@
+// custom.scss
+
+// First, import Bootstrap's variables (optional)
+@import 'node_modules/bootstrap/scss/functions';
+@import 'node_modules/bootstrap/scss/variables';
+
+// Now you can override variables before importing the rest of Bootstrap
+$primary: #ff5733; // Example of overriding a color variable
+
+// Import the full Bootstrap Sass source
+@import 'node_modules/bootstrap/scss/bootstrap';

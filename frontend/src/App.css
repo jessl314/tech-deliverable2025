@@ -1,1 +1,5 @@
 /* style the logo here  */
+
+.App {
+    min-height: 100vh;
+}
