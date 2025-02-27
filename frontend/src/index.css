@@ -1,5 +1,14 @@
+@import "tailwindcss";
+
 :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
+/* .radix-themes {
+	--color-background: #d7bfb1;
+}
+
+body {
+	background-color: var(--color-background);
+} */
 /* probably change this.... like the font */
 /* import tailwind here */
