@@ -6,7 +6,8 @@ import FormatDateTime from "./components/FormatDateTime";
 import FormSubmission from "./components/FormSubmission";
 import logo from "./assets/quotebook.png";
 import { Button } from "@radix-ui/themes";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./styles/app.scss";
+import {Row, Col, Container} from "react-bootstrap";
 
 
 function App() {
@@ -42,31 +43,43 @@ function App() {
 	}
 
 	return (
-		<body className="bg-primary">
-		<div className="App text-white p-3">
-			<img src={logo} alt="quotebook logo"></img>
-			<h1>Hack at UCI Tech Deliverable</h1>
-			<FormSubmission refreshQuotes={handleQuoteSubmit}/>
-			<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
-	
-			<h2>Previous Quotes</h2>
-			<div className="messages">
-				{quotes.length > 0 ? (
-                    <ul>
-                        {quotes.map((quote, index) => (
-                            <li key={index}>
-                                "{quote.message}" - {quote.name}, {FormatDateTime(quote.time)}
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No quotes available</p>
-                )}
-				<Button>Hello</Button>
+        <Container>
+			<Row className="d-flex justify-content-center align-items-center"> 
+				<Col xs="auto" className="d-flex justify-content-end">
+					<img className="quote-logo" src={logo} alt="quotebook logo"></img>
+				</Col>
+				<Col xs="auto">
+					<h1>Hack at UCI Tech Deliverable</h1>
+				</Col>
+			</Row>
+			<Row>
+				<Col xs="auto">
+				<FormSubmission refreshQuotes={handleQuoteSubmit}/>
+				</Col>
 				
-			</div>
-		</div>
-		</body>
+				<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
+		
+				<h2>Previous Quotes</h2>
+				<div className="messages">
+					{quotes.length > 0 ? (
+						<ul>
+							{quotes.map((quote, index) => (
+								<li key={index}>
+									"{quote.message}" - {quote.name}, {FormatDateTime(quote.time)}
+								</li>
+							))}
+						</ul>
+					) : (
+						<p>No quotes available</p>
+					)}
+					<Button>Hello</Button>
+					
+				</div>
+			</Row>
+			
+		</Container>
+		
+		
 	);
 }
 

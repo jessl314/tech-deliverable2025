@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import "../styles/submission.scss";
 
 const FormSubmission = ({refreshQuotes}) => {
     const [name, setName] = useState('');
@@ -24,7 +25,7 @@ const FormSubmission = ({refreshQuotes}) => {
         }
     };
     return (
-        <div>
+        <div className='submit-quote'>
             <h2>Submit a quote</h2>
 			
 			<form onSubmit={handleSubmit}>
