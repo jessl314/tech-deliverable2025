@@ -43,7 +43,7 @@ function App() {
 	}
 
 	return (
-        <Container>
+        <Container className="mt-5">
 			<Row className="d-flex justify-content-center align-items-center"> 
 				<Col xs="auto" className="d-flex justify-content-end">
 					<img className="quote-logo" src={logo} alt="quotebook logo"></img>
@@ -52,13 +52,14 @@ function App() {
 					<h1>Hack at UCI Tech Deliverable</h1>
 				</Col>
 			</Row>
-			<Row>
+			<Row className="d-flex align-items-center">
 				<Col xs="auto">
+				<Container className="submission-container align-items-center">
 				<FormSubmission refreshQuotes={handleQuoteSubmit}/>
+				</Container>
 				</Col>
-				
+				<Col xs="6" className="flex-grow-1">
 				<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
-		
 				<h2>Previous Quotes</h2>
 				<div className="messages">
 					{quotes.length > 0 ? (
@@ -75,6 +76,7 @@ function App() {
 					<Button>Hello</Button>
 					
 				</div>
+				</Col>
 			</Row>
 			
 		</Container>

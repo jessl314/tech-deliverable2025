@@ -25,7 +25,7 @@ const FormSubmission = ({refreshQuotes}) => {
         }
     };
     return (
-        <div className='submit-quote'>
+        <div className='submit-quote align-items-center'>
             <h2>Submit a quote</h2>
 			
 			<form onSubmit={handleSubmit}>
