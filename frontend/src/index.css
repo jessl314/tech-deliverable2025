@@ -1,6 +1,9 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+
 :root {
-	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	font-family: "Lora", serif;
 }
 /* @theme {
 	
@@ -15,3 +18,11 @@ body {
 } */
 /* probably change this.... like the font */
 /* import tailwind here */
+
+
+/* .lora-<uniquifier> {
+	font-family: "Lora", serif;
+	font-optical-sizing: auto;
+	font-weight: <weight>;
+	font-style: normal;
+  } */

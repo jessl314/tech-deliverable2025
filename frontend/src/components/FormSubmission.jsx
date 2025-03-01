@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import "../styles/submission.scss";
+import { Button } from "@radix-ui/themes";
 
 const FormSubmission = ({refreshQuotes}) => {
     const [name, setName] = useState('');
@@ -45,7 +46,7 @@ const FormSubmission = ({refreshQuotes}) => {
                 value = {message}
                 onChange ={(e) => setMessage(e.target.value)}
                 required />
-				<button type="submit">Submit</button>
+				<Button type="submit">Submit</Button>
 			</form>
         </div>
     );

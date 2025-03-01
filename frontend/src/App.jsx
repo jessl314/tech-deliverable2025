@@ -5,7 +5,7 @@ import FetchQuotes from "./components/FetchQuotes";
 import FormatDateTime from "./components/FormatDateTime";
 import FormSubmission from "./components/FormSubmission";
 import logo from "./assets/quotebook.png";
-import { Button } from "@radix-ui/themes";
+
 import "./styles/app.scss";
 import {Row, Col, Container} from "react-bootstrap";
 
@@ -52,7 +52,7 @@ function App() {
 					<h1>Hack at UCI Tech Deliverable</h1>
 				</Col>
 			</Row>
-			<Row className="d-flex justify-content-center align-items-center">
+			<Row className="justify-content-center align-items-center">
 				<Col xs={6}>
 				<Container className="submission-container align-items-center">
 				<FormSubmission refreshQuotes={handleQuoteSubmit}/>

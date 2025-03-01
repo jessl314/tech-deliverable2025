@@ -15,8 +15,8 @@ img {
 }
 
 .messages {
-    min-height: 100px; /* Adjust based on your desired layout */
-    max-height: 300px; /* Optional, limits the height */
+    min-height: 350px; /* Adjust based on your desired layout */
+    max-height: 350px; /* Optional, limits the height */
     overflow-y: auto;  /* Allows scrolling for longer content */
     // padding-bottom: 2rem;
 }
@@ -24,8 +24,9 @@ img {
 .prev {
     padding-right: 2rem;
     padding-left: 2rem;
-    padding-top: 6rem;
+    // padding-top: 6rem;
     padding-bottom: 7.8rem;
     background-color: #D0DDD4;
     margin-top: 2rem;
+    max-height: 500px;
 }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "../styles/prevquotes.scss";
 import {Row, Col} from "react-bootstrap";
 
+
 const QuoteFilter = ({onFilterChange}) => {
     const [selectedOption, setSelectedOption] = useState('')
 
@@ -30,7 +31,9 @@ const QuoteFilter = ({onFilterChange}) => {
             <option value="all">all time</option>
             </select>
             </Col>
+            
         </Row>
+        
     );
 };
 
