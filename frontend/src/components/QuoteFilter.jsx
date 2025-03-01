@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../styles/prevquotes.scss";
-import {Row, Col, Container} from "react-bootstrap";
+import {Row, Col} from "react-bootstrap";
 
 const QuoteFilter = ({onFilterChange}) => {
     const [selectedOption, setSelectedOption] = useState('')
@@ -12,13 +12,13 @@ const QuoteFilter = ({onFilterChange}) => {
     };
 
     return (
-        <Container>
-            <Row className='quote-menu'>
+        
+        <Row className='quote-menu'>
             {/* <label htmlFor="view-quote-menu" style={{ fontSize: "1.9rem", "fontWeight": "bold", "marginTop": "1.5rem"}}>View Quotes From: </label> */}
-            <Col xs="auto">
-            <h2>View Quotes From: </h2>
+            <Col xs={6} className="d-flex align-items-center">
+                <h2>View Quotes From: </h2>
             </Col>
-            <Col xs="auto">
+            <Col xs={6} className="d-flex align-items-center">
             <select
             id="view-quote-menu"
             value={selectedOption}
@@ -30,9 +30,7 @@ const QuoteFilter = ({onFilterChange}) => {
             <option value="all">all time</option>
             </select>
             </Col>
-            </Row>
-        </Container>
-       
+        </Row>
     );
 };
 

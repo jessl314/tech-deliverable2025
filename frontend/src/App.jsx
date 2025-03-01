@@ -52,16 +52,17 @@ function App() {
 					<h1>Hack at UCI Tech Deliverable</h1>
 				</Col>
 			</Row>
-			<Row className="d-flex align-items-center">
+			<Row className="d-flex">
 				<Col xs="auto">
 				<Container className="submission-container align-items-center">
 				<FormSubmission refreshQuotes={handleQuoteSubmit}/>
 				</Container>
 				</Col>
-				<Col xs="6" className="flex-grow-1">
+				<Col xs={6} className="prev align-items-start">
 				<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
-				<h2>Previous Quotes</h2>
 				<div className="messages">
+				<h2>Previous Quotes</h2>
+				
 					{quotes.length > 0 ? (
 						<ul>
 							{quotes.map((quote, index) => (
@@ -73,8 +74,6 @@ function App() {
 					) : (
 						<p>No quotes available</p>
 					)}
-					<Button>Hello</Button>
-					
 				</div>
 				</Col>
 			</Row>
