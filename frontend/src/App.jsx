@@ -52,13 +52,14 @@ function App() {
 					<h1>Hack at UCI Tech Deliverable</h1>
 				</Col>
 			</Row>
-			<Row className="d-flex">
-				<Col xs="auto">
+			<Row className="d-flex justify-content-center align-items-center">
+				<Col xs={6}>
 				<Container className="submission-container align-items-center">
 				<FormSubmission refreshQuotes={handleQuoteSubmit}/>
 				</Container>
 				</Col>
-				<Col xs={6} className="prev align-items-start">
+				<Col xs={6} className="align-items-start">
+				<Container className="prev">
 				<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
 				<div className="messages">
 				<h2>Previous Quotes</h2>
@@ -75,6 +76,7 @@ function App() {
 						<p>No quotes available</p>
 					)}
 				</div>
+				</Container>
 				</Col>
 			</Row>
 			

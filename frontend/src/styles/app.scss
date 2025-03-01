@@ -18,10 +18,14 @@ img {
     min-height: 100px; /* Adjust based on your desired layout */
     max-height: 300px; /* Optional, limits the height */
     overflow-y: auto;  /* Allows scrolling for longer content */
-    padding-bottom: 2rem;
-    background-color: aquamarine;
+    // padding-bottom: 2rem;
 }
 
 .prev {
-    padding-top: 4rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    padding-top: 6rem;
+    padding-bottom: 7.8rem;
+    background-color: #D0DDD4;
+    margin-top: 2rem;
 }
