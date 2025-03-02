@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 export const FetchQuotes = async (max_age) => {
     let url = "http://127.0.0.1:8000/retrieve";
+    // query parameter for age of previous quotes to view
     if (max_age) {
         url += `?max_age=${max_age}`
     }
@@ -10,8 +11,6 @@ export const FetchQuotes = async (max_age) => {
         if (!response.ok) {
             throw new Error("Network response not ok")
         }
-         // Log the raw response text
-
         const data = await response.json()
         return data.quotes || data;
     } catch(error) {

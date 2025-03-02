@@ -56,35 +56,31 @@ function App() {
 			</Row>
 			<Row className="justify-content-center align-items-center">
 				<Col xs={6}>
-				<Container className="submission-container align-items-center">
-				<FormSubmission refreshQuotes={handleQuoteSubmit}/>
-				</Container>
+					<Container className="submission-container align-items-center">
+						<FormSubmission refreshQuotes={handleQuoteSubmit}/>
+					</Container>
 				</Col>
 				<Col xs={6}>
-				<Container className="prev">
-				<QuoteFilter selectedOption={filter} onFilterChange={handleFilterChange}/>
-				<div className="messages">
-				<h2>Previous Quotes</h2>
-				
-					{quotes.length > 0 ? (
-						<ul>
-							{quotes.map((quote, index) => (
-								<li key={index}>
-									"{quote.message}" - {quote.name}, {FormatDateTime(quote.time)}
-								</li>
-							))}
-						</ul>
-					) : (
-						<p>No quotes available</p>
-					)}
-				</div>
-				</Container>
+					<Container className="prev">
+						<QuoteFilter selectedOption={filter} onFilterChange={handleFilterChange}/>
+						<div className="messages">
+							<h2>Previous Quotes</h2>
+								{quotes.length > 0 ? (
+									<ul>
+										{quotes.map((quote, index) => (
+											<li key={index}>
+												"{quote.message}" - {quote.name}, {FormatDateTime(quote.time)}
+											</li>
+										))}
+									</ul>
+								) : (
+									<p>No quotes available</p>
+								)}
+						</div>
+					</Container>
 				</Col>
 			</Row>
-			
 		</Container>
-		
-		
 	);
 }
 

@@ -10,21 +10,19 @@ img {
 }
 
 .messages li {
-    word-wrap: break-word; /* Ensures long words wrap */
-    white-space: normal;   /* Prevents text from overflowing horizontally */
+    word-wrap: break-word;
+    white-space: normal;   
 }
 
 .messages {
-    min-height: 350px; /* Adjust based on your desired layout */
-    max-height: 350px; /* Optional, limits the height */
-    overflow-y: auto;  /* Allows scrolling for longer content */
-    // padding-bottom: 2rem;
+    min-height: 350px; 
+    max-height: 350px; 
+    overflow-y: auto;  
 }
 
 .prev {
     padding-right: 2rem;
     padding-left: 2rem;
-    // padding-top: 6rem;
     padding-bottom: 7.8rem;
     background-color: #e8eeea;
     margin-top: 2rem;

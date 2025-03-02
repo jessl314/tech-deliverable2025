@@ -20,20 +20,18 @@ const QuoteFilter = ({onFilterChange}) => {
                 <h2>View Quotes From: </h2>
             </Col>
             <Col xs={6} className="d-flex align-items-center">
-            <select
-            id="view-quote-menu"
-            value={selectedOption}
-            onChange={handleSelectChange}>
-            <option value="">Choose</option>
-            <option value="week">the last week</option>
-            <option value="month">the last month</option>
-            <option value="year">the last year</option>
-            <option value="all">all time</option>
-            </select>
+                <select
+                id="view-quote-menu"
+                value={selectedOption}
+                onChange={handleSelectChange}>
+                    <option value="">Choose</option>
+                    <option value="week">the last week</option>
+                    <option value="month">the last month</option>
+                    <option value="year">the last year</option>
+                    <option value="all">all time</option>
+                </select>
             </Col>
-            
-        </Row>
-        
+        </Row> 
     );
 };
 
