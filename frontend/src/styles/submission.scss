@@ -1,10 +1,17 @@
 @use './main' as *;
 
 .submit-quote {
-    background-color: #D0DDD4;
+    background-color: #e8eeea;
     padding-right: 2rem;
     padding-left: 2rem;
     padding-top: 10rem;
     padding-bottom: 10rem;
     margin-top: 2rem;
+    border-radius: 5%;
+    
 }
+
+label {
+    margin-right: 0.2rem;
+}
+

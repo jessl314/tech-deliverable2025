@@ -39,7 +39,9 @@ function App() {
 
 	// arrow function that explicitly fetches data. used to force a refetch of data after quote submission
 	const handleQuoteSubmit = () => {
-		fetchData();
+		if (filter != "") {
+			fetchData();
+		}
 	}
 
 	return (
@@ -58,9 +60,9 @@ function App() {
 				<FormSubmission refreshQuotes={handleQuoteSubmit}/>
 				</Container>
 				</Col>
-				<Col xs={6} className="align-items-start">
+				<Col xs={6}>
 				<Container className="prev">
-				<QuoteFilter selectedOption={filter}onFilterChange={handleFilterChange}/>
+				<QuoteFilter selectedOption={filter} onFilterChange={handleFilterChange}/>
 				<div className="messages">
 				<h2>Previous Quotes</h2>
 				

@@ -6,6 +6,7 @@ import {Row, Col} from "react-bootstrap";
 const QuoteFilter = ({onFilterChange}) => {
     const [selectedOption, setSelectedOption] = useState('')
 
+    // event handler for when the user switches choices for the view menu
     const handleSelectChange = (event) => {
         const newVal = event.target.value;
         setSelectedOption(newVal);
@@ -15,7 +16,6 @@ const QuoteFilter = ({onFilterChange}) => {
     return (
         
         <Row className='quote-menu'>
-            {/* <label htmlFor="view-quote-menu" style={{ fontSize: "1.9rem", "fontWeight": "bold", "marginTop": "1.5rem"}}>View Quotes From: </label> */}
             <Col xs={6} className="d-flex align-items-center">
                 <h2>View Quotes From: </h2>
             </Col>
