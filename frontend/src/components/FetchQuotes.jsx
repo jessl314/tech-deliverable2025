@@ -7,6 +7,7 @@ export const FetchQuotes = async (max_age) => {
         url += `?max_age=${max_age}`
     }
     try {
+        // retrieving the relevant data from the database
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error("Network response not ok")

@@ -11,6 +11,7 @@ const FormSubmission = ({refreshQuotes}) => {
         // prevents default reloading
         e.preventDefault();
         try {
+            // attempting to post the submission information into the json database
             const response = await axios.post('http://127.0.0.1:8000/quote', new URLSearchParams({
                 name: name,
                 message: message
@@ -29,7 +30,7 @@ const FormSubmission = ({refreshQuotes}) => {
     return (
         <div className='submit-quote align-items-center'>
             <h2>Submit a quote</h2>
-			
+			{/* form with a Name input field and Quote input field, both must be filled out in order to submit */}
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="input-name">Name: </label>
                     <input 

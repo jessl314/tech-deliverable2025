@@ -62,6 +62,7 @@ function App() {
 				</Col>
 				<Col xs={6}>
 					<Container className="prev">
+						{/* filter and return the data based on the age selected */}
 						<QuoteFilter selectedOption={filter} onFilterChange={handleFilterChange}/>
 						<div className="messages">
 							<h2>Previous Quotes</h2>
